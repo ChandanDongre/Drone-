@@ -24,7 +24,7 @@ function navigateTo(pageId) {
     }
 
     setTimeout(() => {
-        const pageUrl = `pages/${pageId}.html`;
+        const pageUrl = `${pageId}.html`;
         fetch(pageUrl)
             .then(response => response.text())
             .then(html => {
