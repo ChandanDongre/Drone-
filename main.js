@@ -4,11 +4,19 @@ let loadingProgress = 0;
 let loadingInterval;
 
 document.addEventListener('DOMContentLoaded', function () {
-    navigateTo('welcome');
+    const loader = document.getElementById('loader');
+    const mainContent = document.getElementById('main-content');
+    mainContent.style.display = 'none';
+
+    setTimeout(() => {
+        loader.style.display = 'none';
+        mainContent.style.display = 'block';
+        navigateTo('index');
+    }, 2000);
 });
 
 function navigateTo(pageId) {
-    const mainContainer = document.querySelector('.max-w-md');
+    const mainContainer = document.querySelector('#main-content');
     const currentPageElement = mainContainer.firstChild;
 
     if (currentPageElement) {
