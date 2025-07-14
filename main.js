@@ -4,7 +4,7 @@ let loadingProgress = 0;
 let loadingInterval;
 
 document.addEventListener('DOMContentLoaded', function () {
-    navigateTo('welcome');
+    navigateTo('index');
 });
 
 function navigateTo(pageId) {
