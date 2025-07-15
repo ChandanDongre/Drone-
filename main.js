@@ -16,30 +16,21 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function navigateTo(pageId) {
-    const mainContainer = document.querySelector('#main-content');
-    const currentPageElement = mainContainer.firstChild;
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(page => {
+        page.classList.remove('active');
+    });
 
-    if (currentPageElement) {
-        currentPageElement.classList.add('fade-out');
+    const newPage = document.getElementById(pageId);
+    if (newPage) {
+        newPage.classList.add('active');
+        currentPage = pageId;
+        setupEventListeners();
+
+        if (pageId === 'home') {
+            getWeather(26.9124, 75.7873); // Jaipur, India
+        }
     }
-
-    setTimeout(() => {
-        const pageUrl = `pages/${pageId}.html`;
-        fetch(pageUrl)
-            .then(response => response.text())
-            .then(html => {
-                mainContainer.innerHTML = html;
-                currentPage = pageId;
-                setupEventListeners();
-
-                if (pageId === 'home') {
-                    getWeather(26.9124, 75.7873); // Jaipur, India
-                }
-            })
-            .catch(error => {
-                console.error('Error loading page:', error);
-            });
-    }, 300);
 }
 
 function getNearbyPlaces(lat, lon) {
